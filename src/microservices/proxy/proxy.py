@@ -8,7 +8,7 @@ app = FastAPI()
 # endpoint for health check
 @app.get("/health")
 def health_check():
-    return {"status": "healthy"}
+    return {"status": "true"}
 
 
 # endpoint for list movies

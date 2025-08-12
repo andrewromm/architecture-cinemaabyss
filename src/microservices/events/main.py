@@ -131,7 +131,7 @@ async def on_shutdown() -> None:
 # health
 @app.get(f"{ROOT_ENDPOINT}/health")
 def health_check():
-    return {"status": "healthy"}
+    return {"status": True}
 
 
 # endpoints: make them async and await the coroutine
