@@ -1,0 +1,68 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_LEFT_RIGHT()
+
+Person(user, "Пользователь", "Смотрит фильмы, ставит оценки, управляет подпиской")
+
+System_Boundary(sys, "Онлайн-кинотеатр «Кинобездна»") {
+
+  Container(api_gw, "API Gateway", "Маршрутизация, аутентификация")
+  Container(bff_web, "BFF Web", "Go", "API для Web")
+  Container(bff_mobile, "BFF Mobile", "Go", "API для Mobile/TV")
+
+  Container(auth, "Auth Service", "Go", "Аутентификация и авторизация")
+  Container(users, "User Service", "Go", "Профили пользователей")
+  Container(metadata, "Metadata Service", "Go", "Метаданные фильмов")
+  Container(catalog, "Catalog Service", "Go", "Каталоги и поиск")
+  Container(ratings, "Ratings Service", "Go", "Оценки и избранное")
+  Container(subs, "Subscriptions Service", "Go", "Подписки и тарифы")
+  Container(payments, "Payments Service", "Go", "Платежи")
+  Container(content, "Content Service", "Go", "Доставка контента")
+  
+  ContainerDb(db, "Database", "PostgreSQL", "Разделённые схемы/БД по сервисам")
+  Container(kafka, "Kafka", "Шина событий", "Event-driven взаимодействие")
+}
+
+System_Ext(recs_ext, "Рекомендательная система", "Внешний сервис")
+System_Ext(payments_ext, "Платёжная система", "Внешний сервис")
+System_Ext(providers, "Контент-провайдеры", "Внешние каталоги")
+System_Ext(cdn, "CDN", "Доставка контента пользователю")
+
+Rel(user, bff_web, "Использует", "HTTPS")
+Rel(user, bff_mobile, "Использует", "HTTPS")
+
+Rel(bff_web, api_gw, "Вызывает", "HTTPS")
+Rel(bff_mobile, api_gw, "Вызывает", "HTTPS")
+
+Rel(api_gw, auth, "REST/gRPC")
+Rel(api_gw, users, "REST/gRPC")
+Rel(api_gw, metadata, "REST/gRPC")
+Rel(api_gw, catalog, "REST/gRPC")
+Rel(api_gw, ratings, "REST/gRPC")
+Rel(api_gw, subs, "REST/gRPC")
+Rel(api_gw, payments, "REST/gRPC")
+Rel(api_gw, content, "REST/gRPC")
+
+Rel(auth, db, "Читает/пишет")
+Rel(users, db, "Читает/пишет")
+Rel(metadata, db, "Читает/пишет")
+Rel(catalog, db, "Читает/пишет")
+Rel(ratings, db, "Читает/пишет")
+Rel(subs, db, "Читает/пишет")
+Rel(payments, db, "Читает/пишет")
+
+Rel(content, cdn, "Публикует")
+Rel(catalog, metadata, "Обогащение")
+
+Rel(catalog, recs_ext, "Запрос рекомендаций")
+Rel(payments, payments_ext, "Обработка платежей")
+Rel(metadata, providers, "Импорт данных")
+
+Rel(users, kafka, "События")
+Rel(subs, kafka, "События")
+Rel(payments, kafka, "События")
+Rel(ratings, kafka, "События")
+Rel(catalog, kafka, "События")
+
+SHOW_LEGEND()
+@enduml
