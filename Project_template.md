@@ -58,6 +58,12 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka из UI http://localhost:8090 
+![movie event kafka](/src/microservices/events/screens/movie-event-kafka-ui.png)
+![movie event postman](/src/microservices//events//screens/movie-event-test.png)
+![user event kafka](/src/microservices/events/screens/user-event-kafka-ui.png)
+![user event postman](/src/microservices//events/screens/user-event-test.png)
+![payment event kafka](/src/microservices/events/screens/payment-event-kafka-ui.png)
+![payment event postman](/src/microservices/events/screens/payment-event-test.png)
 
 # Задание 3
 
