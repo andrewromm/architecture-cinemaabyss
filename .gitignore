@@ -154,3 +154,14 @@ go.work
 
 # Postman tests reports
 tests/postman/reports/
+
+# Poetry
+*.lock
+
+# Py cache
+__pycache__/
+*.py[cod]
+
+
+# Docker config.json
+dockerconfig.json

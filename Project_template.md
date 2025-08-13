@@ -58,6 +58,12 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka из UI http://localhost:8090 
+![movie event kafka](/src/microservices/events/screens/movie-event-kafka-ui.png)
+![movie event postman](/src/microservices//events//screens/movie-event-test.png)
+![user event kafka](/src/microservices/events/screens/user-event-kafka-ui.png)
+![user event postman](/src/microservices//events/screens/user-event-test.png)
+![payment event kafka](/src/microservices/events/screens/payment-event-kafka-ui.png)
+![payment event postman](/src/microservices/events/screens/payment-event-test.png)
 
 # Задание 3
 
@@ -274,7 +280,8 @@ cat .docker/config.json | base64
 
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
-
+![movies-https](/src/kubernetes/screens/api-movies.png)
+![events-test](/src/kubernetes/screens/test-events.png)
 
 # Задание 4
 Для простоты дальнейшего обновления и развертывания вам как архитектуру необходимо так же реализовать helm-чарты для прокси-сервиса и проверить работу 
@@ -349,6 +356,8 @@ minikube tunnel
 Потом вызовите 
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
+![request-helm](/src/kubernetes/helm/screens/request-helm.png)
+![helm](/src/kubernetes/helm/screens/helm.png)
 
 ## Удаляем все
 
