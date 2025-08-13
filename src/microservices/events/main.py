@@ -27,7 +27,7 @@ consumer_task: Optional[asyncio.Task] = None
 
 
 def _topic_for(kind: Literal["movie", "user", "payment"]) -> str:
-    return {"movie": "movie-event", "user": "user-event", "payment": "payment-event"}[
+    return {"movie": "movie-events", "user": "user-events", "payment": "payment-events"}[
         kind
     ]
 
@@ -102,9 +102,9 @@ async def on_startup() -> None:
     await producer.start()
 
     consumer = AIOKafkaConsumer(
-        "user-event",
-        "payment-event",
-        "movie-event",
+        "user-events",
+        "payment-events",
+        "movie-events",
         bootstrap_servers=KAFKA_BROKERS,
         group_id="events-service",
         enable_auto_commit=True,
