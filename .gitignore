@@ -161,3 +161,7 @@ tests/postman/reports/
 # Py cache
 __pycache__/
 *.py[cod]
+
+
+# Docker config.json
+dockerconfig.json
