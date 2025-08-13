@@ -16,7 +16,7 @@ MOVIES_SERVICE_API = os.getenv("MOVIES_SERVICE_URL", "http://movies-service:8081
 
 
 def _choose_backend_random() -> str:
-    if not GRADUAL_MIGRATION:
+    if not GRADUAL_MIGRATION or MOVIES_MIGRATION_PERCENT == 0:
         # Когда фича выключена — можно направлять всё на монолит
         return MONOLITH_SERVICE_API
     r = random.random()  # 0.0 <= r < 1.0
